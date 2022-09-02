@@ -141,7 +141,7 @@
                     <Component class="javax.swing.JTree" name="jt_entidades">
                       <Properties>
                         <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                          <TreeModel code="Entidades&#xa; Plantas&#xa;  Defensa&#xa;  Disparo&#xa;  Explosiva&#xa; Zombies&#xa;  Clasico&#xa;  Cargado"/>
+                          <TreeModel code="Entidades&#xa; Plantas&#xa;  Defensa&#xa;   Bajo&#xa;   Medio&#xa;   Alto&#xa;  Disparo&#xa;   Bajo&#xa;   Medio&#xa;   Alto&#xa;  Explosiva&#xa;   Bajo&#xa;   Medio&#xa;   Alto&#xa; Zombies&#xa;  Clasico&#xa;  Cargado"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -357,6 +357,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_crear_plantaMouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="370" y="80" width="140" height="-1"/>

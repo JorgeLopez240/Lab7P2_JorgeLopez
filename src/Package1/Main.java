@@ -94,10 +94,28 @@ public class Main extends javax.swing.JFrame {
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Entidades");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Plantas");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Defensa");
+        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Bajo");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Medio");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Alto");
+        treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Disparo");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Bajo");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Medio");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Alto");
+        treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Explosiva");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Bajo");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Medio");
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Alto");
+        treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Zombies");
@@ -203,6 +221,11 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(js_ataque_planta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 140, -1));
 
         bt_crear_planta.setText("Crear");
+        bt_crear_planta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crear_plantaMouseClicked(evt);
+            }
+        });
         jPanel3.add(bt_crear_planta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 140, -1));
 
         jLabel7.setText("Magnitud de Explosion");
@@ -334,6 +357,34 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_crear_plantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crear_plantaMouseClicked
+        Planta p;
+        String rango;
+        if(rb_rango_bajo.isSelected()){
+            rango = rb_rango_bajo.getText();
+        } else if(rb_rango_medio.isSelected()){
+            rango = rb_rango_medio.getText();
+        } else{
+            rango = rb_rango_alto.getText();
+        }
+        String nombre = tf_nombre_planta.getText();
+        double ataque = (double)js_ataque_planta.getValue();
+        double vida = (double) js_vida_planta.getValue();
+        if(rb_tipo_explosiva.isSelected()){
+            double magnitud = (double)js_magnitud_planta.getValue();
+            p= new Pexplosiva(magnitud, nombre, ataque, vida, rango);
+        } else if(rb_tipo_disparo.isSelected()){
+            String nomProyectil = tf_nombreProyectil_planta.getText();
+            String color =tf_color_planta.getText();
+            p= new Pdisparo(nomProyectil, color, nombre, ataque, vida, rango);
+        } else{
+            double altura =(double)js_altura_planta.getValue();
+            double dureza = (double)js_dureza_planta.getValue();
+            double peso = (double)js_peso_planta.getValue();
+            p= new Pdefensa(altura, dureza, peso, nombre, ataque, vida, rango);
+        }
+    }//GEN-LAST:event_bt_crear_plantaMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
