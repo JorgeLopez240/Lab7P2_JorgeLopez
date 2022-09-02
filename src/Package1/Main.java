@@ -90,6 +90,8 @@ public class Main extends javax.swing.JFrame {
         bt_agregar_PersonaComida = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jl_PersonasComidas = new javax.swing.JList<>();
+        jPanel2 = new javax.swing.JPanel();
+        bt_borrar_plantas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -325,6 +327,32 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Zombies", jp_zombies);
 
+        bt_borrar_plantas.setText("Borrar todas las plantas");
+        bt_borrar_plantas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_borrar_plantasMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_borrar_plantas)
+                .addContainerGap(383, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(bt_borrar_plantas)
+                .addContainerGap(219, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Más", jPanel2);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -364,8 +392,8 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_crear_plantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crear_plantaMouseClicked
-        administrarPlantas ap = new administrarPlantas("./Plantas.txt");
-        ap.cargarArchivo();
+        administrarPlantas ap = new administrarPlantas("./prueba.txt");
+        
         Planta p;
         String rango;
         if(rb_rango_bajo.isSelected()){
@@ -376,10 +404,10 @@ public class Main extends javax.swing.JFrame {
             rango = rb_rango_alto.getText();
         }
         String nombre = tf_nombre_planta.getText();
-        double ataque = (double)js_ataque_planta.getValue();
-        double vida = (double) js_vida_planta.getValue();
+        double ataque = (Integer)js_ataque_planta.getValue();
+        double vida = (Integer) js_vida_planta.getValue();
         if(rb_tipo_explosiva.isSelected()){
-            double magnitud = (double)js_magnitud_planta.getValue();
+            double magnitud = (Integer)js_magnitud_planta.getValue();
             p= new Pexplosiva(magnitud, nombre, ataque, vida, rango);
         } else if(rb_tipo_disparo.isSelected()){
             String nomProyectil = tf_nombreProyectil_planta.getText();
@@ -398,6 +426,10 @@ public class Main extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "Planta agregada exitosamente!");
     }//GEN-LAST:event_bt_crear_plantaMouseClicked
+
+    private void bt_borrar_plantasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrar_plantasMouseClicked
+        
+    }//GEN-LAST:event_bt_borrar_plantasMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -436,6 +468,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup bg_tipo_Planta;
     private javax.swing.ButtonGroup bg_tipo_zombie;
     private javax.swing.JButton bt_agregar_PersonaComida;
+    private javax.swing.JButton bt_borrar_plantas;
     private javax.swing.JButton bt_crear_planta;
     private javax.swing.JButton bt_crear_zombie;
     private javax.swing.JButton jButton1;
@@ -463,6 +496,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
