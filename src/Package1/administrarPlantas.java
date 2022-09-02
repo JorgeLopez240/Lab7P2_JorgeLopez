@@ -55,13 +55,29 @@ public class administrarPlantas {
                while(cont<lista.size()){
                    int num=lista.get(cont);
                    if(num==0){
-                       bw.write("Nombre="+p.getNombre()+",");
+                       bw.write("Nombre="+p.getNombre());
+                       int num2=lista.indexOf(num);
+                       if(cont<lista.size()-1 && lista.get(num2+1) !=4 ){
+                           bw.write(",");
+                       }
                    } else if(num==1){
-                       bw.write("Ataque="+p.getAtaque()+",");
+                       bw.write("Ataque="+p.getAtaque());
+                       int num2=lista.indexOf(num);
+                       if(cont<lista.size()-1 && lista.get(num2+1) !=4){
+                           bw.write(",");
+                       }
                    } else if(num==2){
-                       bw.write("Rango="+p.getRango()+",");
+                       bw.write("Rango="+p.getRango());
+                       int num2=lista.indexOf(num);
+                       if(cont<lista.size()-1 && lista.get(num2+1) !=4){
+                           bw.write(",");
+                       }
                    } else if(num==3){
-                       bw.write("Vida="+p.getVida()+",");
+                       bw.write("Vida="+p.getVida());
+                       int num2=lista.indexOf(num);
+                       if(cont<lista.size()-1 && lista.get(num2+1) !=4){
+                           bw.write(",");
+                       }
                    } else {
                        if(cont==lista.size()-1){
                            if(p instanceof Pexplosiva){

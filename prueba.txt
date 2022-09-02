@@ -1,0 +1,1 @@
+Vida=40.0,Ataque=30.0,Nombre=Peste_Explosiva:(Magnitud=110.0)_Rango=Bajo|
