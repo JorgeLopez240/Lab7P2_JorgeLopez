@@ -71,10 +71,10 @@ public class administrarPlantas {
         }//FIN IF
     }
  
-    public ArrayList random(){
+    public ArrayList<Integer> random(){
         ArrayList<Integer> ret = new ArrayList();
         while(ret.size()<5){
-            int ran = r.nextInt(4);
+            int ran = r.nextInt(5);
             if(!(ret.contains(ran))){
                 ret.add(ran);
             }

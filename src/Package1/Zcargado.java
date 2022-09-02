@@ -58,6 +58,4 @@ public class Zcargado extends Zombie{
         return "Zcargado{" + "enojo=" + enojo + '}';
     }
     
-    
-    
 }
