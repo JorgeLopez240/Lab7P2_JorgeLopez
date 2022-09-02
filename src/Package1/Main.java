@@ -1,11 +1,14 @@
 
 package Package1;
 
+import javax.swing.DefaultListModel;
+
 public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -20,7 +23,7 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt_entidades = new javax.swing.JTree();
         jl_planta_test = new javax.swing.JLabel();
         jl_zombie_test = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -41,7 +44,7 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         js_vida_planta = new javax.swing.JSpinner();
         js_ataque_planta = new javax.swing.JSpinner();
-        jButton2 = new javax.swing.JButton();
+        bt_crear_planta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         js_magnitud_planta = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
@@ -81,16 +84,30 @@ public class Main extends javax.swing.JFrame {
         tf_personaComida = new javax.swing.JTextField();
         bt_agregar_PersonaComida = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        PersonasComidas = new javax.swing.JList<>();
+        jl_PersonasComidas = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("PLANTAS VS ZOMBIES");
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Entidades");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Plantas");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Defensa");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Disparo");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Explosiva");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Zombies");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Clasico");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Cargado");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jt_entidades.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jt_entidades);
 
         jl_planta_test.setText("-");
 
@@ -185,8 +202,8 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(js_vida_planta, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 130, -1));
         jPanel3.add(js_ataque_planta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 140, -1));
 
-        jButton2.setText("Crear");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 140, -1));
+        bt_crear_planta.setText("Crear");
+        jPanel3.add(bt_crear_planta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 140, -1));
 
         jLabel7.setText("Magnitud de Explosion");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
@@ -273,7 +290,8 @@ public class Main extends javax.swing.JFrame {
         bt_agregar_PersonaComida.setText("+");
         jPanel2.add(bt_agregar_PersonaComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 50, -1));
 
-        jScrollPane3.setViewportView(PersonasComidas);
+        jl_PersonasComidas.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jl_PersonasComidas);
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 160, -1));
 
@@ -350,14 +368,13 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> PersonasComidas;
     private javax.swing.ButtonGroup bg_rango;
     private javax.swing.ButtonGroup bg_tipo_Planta;
     private javax.swing.ButtonGroup bg_tipo_zombie;
     private javax.swing.JButton bt_agregar_PersonaComida;
+    private javax.swing.JButton bt_crear_planta;
     private javax.swing.JButton bt_crear_zombie;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -390,8 +407,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTree jTree1;
     private javax.swing.JSpinner jf_ataque_zombie;
+    private javax.swing.JList<String> jl_PersonasComidas;
     private javax.swing.JLabel jl_planta_test;
     private javax.swing.JLabel jl_zombie_test;
     private javax.swing.JSpinner js_altura_planta;
@@ -405,6 +422,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner js_tamano_zombie;
     private javax.swing.JSpinner js_vida_planta;
     private javax.swing.JSpinner js_vida_zombie;
+    private javax.swing.JTree jt_entidades;
     private javax.swing.JRadioButton rb_rango_alto;
     private javax.swing.JRadioButton rb_rango_bajo;
     private javax.swing.JRadioButton rb_rango_medio;
