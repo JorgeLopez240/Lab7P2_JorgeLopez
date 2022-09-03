@@ -40,7 +40,7 @@ public class Main extends javax.swing.JFrame {
         jl_planta_test = new javax.swing.JLabel();
         jl_zombie_test = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_test = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jp_plantas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -163,11 +163,16 @@ public class Main extends javax.swing.JFrame {
 
         jl_zombie_test.setText("-");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        ta_test.setColumns(20);
+        ta_test.setRows(5);
+        jScrollPane2.setViewportView(ta_test);
 
         jButton1.setText("Testear");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_testLayout = new javax.swing.GroupLayout(jp_test);
         jp_test.setLayout(jp_testLayout);
@@ -485,8 +490,16 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_ElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ElegirActionPerformed
        
-        jl_planta_test.setText(planta_seleccionada.getNombre());
+        if(nodo_seleccionado.getUserObject() instanceof Planta){
+            jl_planta_test.setText(((Planta)nodo_seleccionado.getUserObject()).getNombre());
+        } else{
+            jl_zombie_test.setText(((Zombie)nodo_seleccionado.getUserObject()).getNombre());
+        }
     }//GEN-LAST:event_jmi_ElegirActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public void actualizar_Jtree(){
        administrarPlantas ap = new administrarPlantas("./prueba.txt");
@@ -623,7 +636,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JList<String> jl_PersonasComidas;
     private javax.swing.JLabel jl_planta_test;
     private javax.swing.JLabel jl_zombie_test;
@@ -654,6 +666,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_tipo_defensa;
     private javax.swing.JRadioButton rb_tipo_disparo;
     private javax.swing.JRadioButton rb_tipo_explosiva;
+    private javax.swing.JTextArea ta_test;
     private javax.swing.JTextField tf_colorBandera_zombie;
     private javax.swing.JTextField tf_color_planta;
     private javax.swing.JTextField tf_direccion_zombie;
