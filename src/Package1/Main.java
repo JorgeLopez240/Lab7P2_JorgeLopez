@@ -2,11 +2,14 @@
 package Package1;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.Collections;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class Main extends javax.swing.JFrame {
 
@@ -92,6 +95,7 @@ public class Main extends javax.swing.JFrame {
         jl_PersonasComidas = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         bt_borrar_plantas = new javax.swing.JButton();
+        tf_prueba_cargar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -340,15 +344,21 @@ public class Main extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bt_borrar_plantas)
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(bt_borrar_plantas)
+                        .addGap(0, 373, Short.MAX_VALUE))
+                    .addComponent(tf_prueba_cargar))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(bt_borrar_plantas)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(tf_prueba_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Más", jPanel2);
@@ -393,7 +403,6 @@ public class Main extends javax.swing.JFrame {
 
     private void bt_crear_plantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crear_plantaMouseClicked
         administrarPlantas ap = new administrarPlantas("./prueba.txt");
-        
         Planta p;
         String rango;
         if(rb_rango_bajo.isSelected()){
@@ -414,9 +423,9 @@ public class Main extends javax.swing.JFrame {
             String color =tf_color_planta.getText();
             p= new Pdisparo(nomProyectil, color, nombre, ataque, vida, rango);
         } else{
-            double altura =(double)js_altura_planta.getValue();
-            double dureza = (double)js_dureza_planta.getValue();
-            double peso = (double)js_peso_planta.getValue();
+            double altura =(Integer)js_altura_planta.getValue();
+            double dureza = (Integer)js_dureza_planta.getValue();
+            double peso = (Integer)js_peso_planta.getValue();
             p= new Pdefensa(altura, dureza, peso, nombre, ataque, vida, rango);
         }
         ap.getListaPlantas().add(p);
@@ -431,6 +440,30 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bt_borrar_plantasMouseClicked
 
+    public void actualizar_Jtree(){
+       administrarPlantas ap = new administrarPlantas("./prueba.txt");
+       ArrayList<Planta> copia_Plantas= ap.getListaPlantas();
+       DefaultTreeModel model = (DefaultTreeModel) jt_entidades.getModel();
+       DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) model.getRoot();
+        for (Planta p : copia_Plantas) {
+            if(p instanceof Pdefensa){
+                if(p.getRango().equals("Bajo")){
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(0).getChildAt(0);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } else if(p.getRango().equals("Medio")){
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(0).getChildAt(1);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } else{
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(0).getChildAt(2);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                }
+            }
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -536,5 +569,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre_planta;
     private javax.swing.JTextField tf_nombre_zombie;
     private javax.swing.JTextField tf_personaComida;
+    private javax.swing.JTextField tf_prueba_cargar;
     // End of variables declaration//GEN-END:variables
 }

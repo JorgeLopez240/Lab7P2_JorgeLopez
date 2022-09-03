@@ -109,7 +109,7 @@ public class administrarPlantas {
                        }
                    }
                    if(cont==lista.size()-1){
-                       bw.write("|");
+                       bw.write("/");
                    }
                    cont++;
                }
@@ -126,7 +126,11 @@ public class administrarPlantas {
         listaPlantas = new ArrayList();
         if (archivo.exists()) {
             try {
-                
+                sc = new Scanner(archivo);
+                sc.useDelimiter("/");
+                while (sc.hasNext()) {
+                    
+                }
             } catch (Exception ex) {
             }
             sc.close();
