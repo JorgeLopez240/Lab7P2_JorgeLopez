@@ -1,1 +1,1 @@
-Explosiva:(Magnitud=110.0)_Vida=40.0,Rango=Bajo,Nombre=Peste,Ataque=20.0/
+/Disparo:(Color=rojo;Proyectil=putin)_Ataque=10.0,Vida=10.0,Rango=Medio,Nombre=Cohete/

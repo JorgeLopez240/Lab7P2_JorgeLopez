@@ -49,6 +49,7 @@ public class administrarPlantas {
         try {
             fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
+            bw.write("/");
             for (Planta p: listaPlantas) {
                ArrayList<Integer> lista = random();
                int cont =0;
@@ -129,6 +130,8 @@ public class administrarPlantas {
                 sc = new Scanner(archivo);
                 sc.useDelimiter("/");
                 while (sc.hasNext()) {
+                    String nombre="",rango="";
+                    double ataque=0,vida=0;
                     String cad = sc.next();
                     String [] arr = cad.split("_");
                     String largo;
@@ -145,35 +148,46 @@ public class administrarPlantas {
                     for (String s : arr2) {
                         char f = s.charAt(0);
                         if(f=='V'){
-                            p = acortador(s, 5, s.length()-1);
-                            double vida = Double.parseDouble(p);
+                            p = acortador(s, 6, s.length()-1);
+                            vida = Double.parseDouble(p);
                         } else if(f=='R'){
-                            p=acortador(s, 6, 10);
-                            String rango=p;
+                            p=acortador(s, 7, 10);
+                            rango=p;
                         } else if(f=='N'){
-                            p=acortador(s, 7, s.length()-1);
-                            String nombre =p;
+                            p=acortador(s, 8, s.length()-1);
+                            nombre =p;
                         } else if(f=='A'){
-                            p=acortador(s, 7, s.length()-1);
-                            double ataque = Double.parseDouble(p);
+                            p=acortador(s, 9, s.length()-1);
+                            ataque = Double.parseDouble(p);
                         }
                     }
                     char f2=corto.charAt(0);
                     char f3=corto.charAt(1);
                     String p2;
                     if(f2=='E'){
-                        p2=acortador(corto, 20, corto.length()-2);
+                        p2=acortador(corto, 21, corto.length()-2);
+                        double magnitud= Double.parseDouble(p2);
+                        Planta planta = new Pexplosiva(magnitud, nombre, ataque, vida, rango);
                     } else if(f3=='i'){
                         String arr4[]=corto.split(":");
                         String cad4=arr4[1];
                         String [] arr5=cad4.split(";");
                         String n=arr5[0];
                         String c=arr5[1];
-                        String nombreProyectil=acortador(n, 11, n.length()-1);
-                        String color=acortador(c, 6, c.length()-1);
+                        String nombreProyectil=acortador(n, 12, n.length()-1);
+                        String color=acortador(c, 7, c.length()-1);
                     } else if(f3=='e'){
-                        
+                        String []arr4=corto.split(":");
+                        String cad4=arr4[1];
+                        String []arr5=cad4.split(";");
+                        String pe=arr5[0];
+                        String a=arr5[1];
+                        String d=arr5[2];
+                        double peso=Double.parseDouble(acortador(pe, 6, pe.length()-1));
+                        double altura = Double.parseDouble(acortador(a, 7, a.length()-1));
+                        double dureza = Double.parseDouble(acortador(d, 7, d.length()));
                     }
+                    
                 }
             } catch (Exception ex) {
             }
