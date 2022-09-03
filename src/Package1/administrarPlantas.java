@@ -132,6 +132,7 @@ public class administrarPlantas {
                 while (sc.hasNext()) {
                     String nombre="",rango="";
                     double ataque=0,vida=0;
+                    Planta planta=new Planta();
                     String cad = sc.next();
                     String [] arr = cad.split("_");
                     String largo;
@@ -167,7 +168,7 @@ public class administrarPlantas {
                     if(f2=='E'){
                         p2=acortador(corto, 21, corto.length()-2);
                         double magnitud= Double.parseDouble(p2);
-                        Planta planta = new Pexplosiva(magnitud, nombre, ataque, vida, rango);
+                        planta = new Pexplosiva(magnitud, nombre, ataque, vida, rango);
                     } else if(f3=='i'){
                         String arr4[]=corto.split(":");
                         String cad4=arr4[1];
@@ -176,6 +177,7 @@ public class administrarPlantas {
                         String c=arr5[1];
                         String nombreProyectil=acortador(n, 12, n.length()-1);
                         String color=acortador(c, 7, c.length()-1);
+                        planta = new Pdisparo(nombreProyectil, color, nombre, ataque, vida, rango);
                     } else if(f3=='e'){
                         String []arr4=corto.split(":");
                         String cad4=arr4[1];
@@ -186,8 +188,9 @@ public class administrarPlantas {
                         double peso=Double.parseDouble(acortador(pe, 6, pe.length()-1));
                         double altura = Double.parseDouble(acortador(a, 7, a.length()-1));
                         double dureza = Double.parseDouble(acortador(d, 7, d.length()));
+                        planta = new Pdefensa(altura, dureza, peso, nombre, ataque, vida, rango);
                     }
-                    
+                    listaPlantas.add(planta);
                 }
             } catch (Exception ex) {
             }
@@ -195,6 +198,9 @@ public class administrarPlantas {
         }//FIN IF
     }
  
+    
+    
+    
     public ArrayList<Integer> random(){
         ArrayList<Integer> ret = new ArrayList();
         while(ret.size()<5){

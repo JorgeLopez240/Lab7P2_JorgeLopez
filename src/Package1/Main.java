@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.Collections;
+import javax.swing.text.PlainDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -26,6 +27,10 @@ public class Main extends javax.swing.JFrame {
         bg_rango = new javax.swing.ButtonGroup();
         bg_tipo_Planta = new javax.swing.ButtonGroup();
         bg_tipo_zombie = new javax.swing.ButtonGroup();
+        jPop_test = new javax.swing.JPopupMenu();
+        jmi_Elegir = new javax.swing.JMenuItem();
+        jmi_Eliminar = new javax.swing.JMenuItem();
+        jmi_Imprimir = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -69,7 +74,7 @@ public class Main extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         tf_nombre_zombie = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jf_ataque_zombie = new javax.swing.JSpinner();
+        js_ataque_zombie = new javax.swing.JSpinner();
         jLabel15 = new javax.swing.JLabel();
         js_vida_zombie = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
@@ -93,9 +98,20 @@ public class Main extends javax.swing.JFrame {
         bt_agregar_PersonaComida = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jl_PersonasComidas = new javax.swing.JList<>();
-        jPanel2 = new javax.swing.JPanel();
-        bt_borrar_plantas = new javax.swing.JButton();
-        tf_prueba_cargar = new javax.swing.JTextField();
+
+        jmi_Elegir.setText("Elegir");
+        jmi_Elegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ElegirActionPerformed(evt);
+            }
+        });
+        jPop_test.add(jmi_Elegir);
+
+        jmi_Eliminar.setText("Eliminar");
+        jPop_test.add(jmi_Eliminar);
+
+        jmi_Imprimir.setText("Imprimir");
+        jPop_test.add(jmi_Imprimir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,6 +152,11 @@ public class Main extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jt_entidades.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_entidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_entidadesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jt_entidades);
 
         jl_planta_test.setText("-");
@@ -273,7 +294,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel14.setText("Ataque");
         jp_zombies.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-        jp_zombies.add(jf_ataque_zombie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, -1));
+        jp_zombies.add(js_ataque_zombie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, -1));
 
         jLabel15.setText("Vida");
         jp_zombies.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
@@ -291,6 +312,11 @@ public class Main extends javax.swing.JFrame {
         jp_zombies.add(rb_tipo_cargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         bt_crear_zombie.setText("Crear");
+        bt_crear_zombie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crear_zombieMouseClicked(evt);
+            }
+        });
         jp_zombies.add(bt_crear_zombie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 130, -1));
 
         jLabel17.setText("Edad");
@@ -331,38 +357,6 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Zombies", jp_zombies);
 
-        bt_borrar_plantas.setText("Borrar todas las plantas");
-        bt_borrar_plantas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_borrar_plantasMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(bt_borrar_plantas)
-                        .addGap(0, 373, Short.MAX_VALUE))
-                    .addComponent(tf_prueba_cargar))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(bt_borrar_plantas)
-                .addGap(18, 18, 18)
-                .addComponent(tf_prueba_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Más", jPanel2);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -402,7 +396,8 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_crear_plantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crear_plantaMouseClicked
-        administrarPlantas ap = new administrarPlantas("./prueba.txt");
+        administrarPlantas ap = new administrarPlantas("./Plantas.txt");
+        //ap.cargarArchivo();
         Planta p;
         String rango;
         if(rb_rango_bajo.isSelected()){
@@ -429,23 +424,76 @@ public class Main extends javax.swing.JFrame {
             p= new Pdefensa(altura, dureza, peso, nombre, ataque, vida, rango);
         }
         ap.getListaPlantas().add(p);
+        plantas.add(p);
         try {
             ap.escribirArchivo();
         } catch (IOException ex) {
         }
+        actualizar_Jtree();
         JOptionPane.showMessageDialog(this, "Planta agregada exitosamente!");
     }//GEN-LAST:event_bt_crear_plantaMouseClicked
 
-    private void bt_borrar_plantasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_borrar_plantasMouseClicked
-        
-    }//GEN-LAST:event_bt_borrar_plantasMouseClicked
+    private void bt_crear_zombieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crear_zombieMouseClicked
+        Zombie z= new Zombie();
+        String nombre = tf_nombre_zombie.getText();
+        double ataque = (Integer)js_ataque_zombie.getValue();
+        double vida = (Integer) js_vida_zombie.getValue();
+        if(rb_tipo_clasico.isSelected()){
+            int exp = (Integer)js_experiencia_zombie.getValue();
+            Bandera b=new Bandera();
+            String color = tf_colorBandera_zombie.getText();
+            String d= tf_direccion_zombie.getText();
+            z= new Zclasico(exp, b, nombre, ataque, vida);
+        } else {
+            double tam = (Integer)js_tamano_zombie.getValue();
+            double edad = (Integer)js_edad_zombie.getValue();
+            int enoje = (Integer)js_enojo_zombie.getValue();
+            z=new Zcargado(tam, edad, enoje, nombre, ataque, vida);
+        }
+        zombies.add(z);
+        actualizar_Jtree();
+        JOptionPane.showMessageDialog(this, "zombie agregado exitosamente!");
+    }//GEN-LAST:event_bt_crear_zombieMouseClicked
+
+    private void jt_entidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_entidadesMouseClicked
+        if (evt.isMetaDown()) {
+            //seleccionar un nodo con click derecho
+            int row = jt_entidades.getClosestRowForLocation(
+                    evt.getX(), evt.getY());
+            jt_entidades.setSelectionRow(row);
+            Object v1
+                    = jt_entidades.getSelectionPath().
+                    getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Planta) {
+                planta_seleccionada
+                        = (Planta) nodo_seleccionado.
+                        getUserObject();
+                jPop_test.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }
+            else if(nodo_seleccionado.getUserObject() instanceof Zombie){
+                zombie_seleccionado
+                        = (Zombie) nodo_seleccionado.
+                        getUserObject();
+                jPop_test.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }
+
+        }
+    }//GEN-LAST:event_jt_entidadesMouseClicked
+
+    private void jmi_ElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ElegirActionPerformed
+       
+        jl_planta_test.setText(planta_seleccionada.getNombre());
+    }//GEN-LAST:event_jmi_ElegirActionPerformed
 
     public void actualizar_Jtree(){
        administrarPlantas ap = new administrarPlantas("./prueba.txt");
        ArrayList<Planta> copia_Plantas= ap.getListaPlantas();
        DefaultTreeModel model = (DefaultTreeModel) jt_entidades.getModel();
        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) model.getRoot();
-        for (Planta p : copia_Plantas) {
+        for (Planta p : plantas) {
             if(p instanceof Pdefensa){
                 if(p.getRango().equals("Bajo")){
                     DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(0).getChildAt(0);
@@ -460,8 +508,50 @@ public class Main extends javax.swing.JFrame {
                     DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
                     nodo.add(n);
                 }
+            } else if(p instanceof Pexplosiva){
+                if(p.getRango().equals("Bajo")){
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(2).getChildAt(0);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } else if(p.getRango().equals("Medio")){
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(2).getChildAt(1);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } else{
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(2).getChildAt(2);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                }
+            } else {
+               if(p.getRango().equals("Bajo")){
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(1).getChildAt(0);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } else if(p.getRango().equals("Medio")){
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(1).getChildAt(1);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } else{
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(0).getChildAt(1).getChildAt(2);
+                    DefaultMutableTreeNode n= new DefaultMutableTreeNode(p);
+                    nodo.add(n);
+                } 
             }
         }
+        
+        for (Zombie z : zombies) {
+            if(z instanceof Zclasico){
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(1).getChildAt(0);
+                DefaultMutableTreeNode n= new DefaultMutableTreeNode(z);
+                nodo.add(n);
+            } else{
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)raiz.getChildAt(1).getChildAt(1);
+                DefaultMutableTreeNode n= new DefaultMutableTreeNode(z);
+                nodo.add(n);
+            }
+        }
+        
+        model.reload();
     }
     
     public static void main(String args[]) {
@@ -501,7 +591,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup bg_tipo_Planta;
     private javax.swing.ButtonGroup bg_tipo_zombie;
     private javax.swing.JButton bt_agregar_PersonaComida;
-    private javax.swing.JButton bt_borrar_plantas;
     private javax.swing.JButton bt_crear_planta;
     private javax.swing.JButton bt_crear_zombie;
     private javax.swing.JButton jButton1;
@@ -529,21 +618,24 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPop_test;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JSpinner jf_ataque_zombie;
     private javax.swing.JList<String> jl_PersonasComidas;
     private javax.swing.JLabel jl_planta_test;
     private javax.swing.JLabel jl_zombie_test;
+    private javax.swing.JMenuItem jmi_Elegir;
+    private javax.swing.JMenuItem jmi_Eliminar;
+    private javax.swing.JMenuItem jmi_Imprimir;
     private javax.swing.JPanel jp_plantas;
     private javax.swing.JPanel jp_test;
     private javax.swing.JPanel jp_zombies;
     private javax.swing.JSpinner js_altura_planta;
     private javax.swing.JSpinner js_ataque_planta;
+    private javax.swing.JSpinner js_ataque_zombie;
     private javax.swing.JSpinner js_dureza_planta;
     private javax.swing.JSpinner js_edad_zombie;
     private javax.swing.JSpinner js_enojo_zombie;
@@ -569,6 +661,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre_planta;
     private javax.swing.JTextField tf_nombre_zombie;
     private javax.swing.JTextField tf_personaComida;
-    private javax.swing.JTextField tf_prueba_cargar;
     // End of variables declaration//GEN-END:variables
+
+    private ArrayList<Planta> plantas = new ArrayList();
+    private ArrayList<Zombie> zombies= new ArrayList();
+    
+    DefaultMutableTreeNode nodo_seleccionado;
+    Planta planta_seleccionada;
+    Zombie zombie_seleccionado;
+    
 }

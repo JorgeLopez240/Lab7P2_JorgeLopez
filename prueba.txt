@@ -1,1 +1,0 @@
-/Disparo:(Color=rojo;Proyectil=putin)_Ataque=10.0,Vida=10.0,Rango=Medio,Nombre=Cohete/
